@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
 
     /**
      * Show Task Dashboard
@@ -27,7 +27,7 @@ Route::group(['middleware' => 'web'], function () {
 	    ]);
 
 	    if ($validator->fails()) {
-	        return redirect('/')
+	        return redirect('/task')
 	            ->withInput()
 	            ->withErrors($validator);
 	    }
@@ -35,8 +35,7 @@ Route::group(['middleware' => 'web'], function () {
 	    $task = new Task;
 	    $task->name = $request->name;
 	    $task->save();
-
-	    return redirect('/');
+	    return redirect('/task');
 	});
 
     /**
@@ -45,7 +44,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::delete('/task/{task}', function (Task $task) {
 	    $task->delete();
 
-	    return redirect('/');
+	    return redirect('/task');
 	});
 
 });
