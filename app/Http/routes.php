@@ -4,11 +4,14 @@ use App\Task;
 use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
 
     /**
      * Show Task Dashboard
      */
-    Route::get('/', function () {
+    Route::get('/task', function () {
 	    $tasks = Task::orderBy('created_at', 'asc')->get();
 
 	    return view('tasks', [
