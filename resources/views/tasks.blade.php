@@ -13,7 +13,7 @@
                     @include('errors')
 
                     <!-- New Task Form -->
-                    <form action="/task" method="POST" class="form-horizontal">
+                    <form action="{{ url('/task/' . $project->id) }}" method="POST" class="form-horizontal">
                         {{ csrf_field() }}
 
                         <!-- Task Name -->
@@ -71,11 +71,15 @@
                             </tbody>
                         </table>
                     </div>
-                    @if (Auth::user()->role == "admin")
+                    <!-- Mail Reminder Button -->
+                    @if ($project->isAdmin(Auth::user()->id))
                     <div class="panel-footer">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-envelope"></i> Reminder
-                        </button>
+                        <form action="/mail/{{ $project->id }}" method="POST">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-envelope"></i> Reminder
+                            </button>
+                        </form>
                     </div>
                     @endif
                 </div>

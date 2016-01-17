@@ -49,7 +49,17 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ url('/task') }}">Tasks</a></li>
+                    @if (Auth::guest() == false)
+                    <li><a href="{{ url('/project') }}">Projects</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tasks<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        @foreach (Auth::user()->projects as $project)
+                            <li><a href="{{ url('/task/' . $project->id) }}">{{ $project->name }}</a></li>
+                        @endforeach
+                      </ul>
+                    </li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
