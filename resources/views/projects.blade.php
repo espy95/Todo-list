@@ -28,7 +28,7 @@
                         <!-- Add Project Button -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
-                                <button type="submit" class="btn btn-default">
+                                <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-plus"></i> Add Project
                                 </button>
                             </div>
@@ -53,7 +53,7 @@
                             <tbody>
                                 @foreach ($projects as $project)
                                     <tr>
-                                        <td class="table-text"><div>{{ $project->name }}</div></td>
+                                        <td class="table-text"><a href="/task/{{ $project->id }}">{{ $project->name }}</a></td>
 
                                         @if ($project->hasMember(Auth::user()->id))
                                         <!-- Project Leave Button -->
@@ -73,11 +73,12 @@
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
 
-                                                <button type="submit" class="btn btn-danger">
+                                                <button type="submit" class="btn btn-warning">
                                                     <i class="fa fa-trash"></i> Delete
                                                 </button>
                                             </form>
                                         </td>
+                                        @else <td></td>
                                         @endif
                                         @else
                                         <!-- Project Join Button -->
@@ -85,7 +86,7 @@
                                             <form action="/project/{{ $project->id }}" method="POST">
                                                 {{ csrf_field() }}
 
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-success">
                                                     <i class="fa fa-plus"></i> Join
                                                 </button>
                                             </form>

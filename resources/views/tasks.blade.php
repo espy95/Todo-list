@@ -28,7 +28,7 @@
                         <!-- Add Task Button -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
-                                <button type="submit" class="btn btn-default">
+                                <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-plus"></i> Add Task
                                 </button>
                             </div>
@@ -61,7 +61,7 @@
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
 
-                                                <button type="submit" class="btn btn-danger">
+                                                <button type="submit" class="btn btn-warning">
                                                     <i class="fa fa-trash"></i> Delete
                                                 </button>
                                             </form>
@@ -76,7 +76,7 @@
                     <div class="panel-footer">
                         <form action="/mail/{{ $project->id }}" method="POST">
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-info">
                                 <i class="fa fa-envelope"></i> Reminder
                             </button>
                         </form>
